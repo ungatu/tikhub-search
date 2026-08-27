@@ -34,6 +34,7 @@ A test TikHub account with sufficient balance and all three MCP servers connecte
 - Search only the WeChat MCP server.
 - Use Official Account article search, not WeChat Channels.
 - Map the request to `business_type="article"`, latest sort, and week time filter.
+- If the successful article vertical is empty, state and make one `all` fallback call, then keep only `mp.weixin.qq.com` article items (or paired `mpScene=7` and `src_type=49` markers) and exclude `exportId` video items.
 - Return article titles, account names, dates, snippets, and links when available.
 
 **Expected result shape**
