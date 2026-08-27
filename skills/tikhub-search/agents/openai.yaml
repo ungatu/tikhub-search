@@ -1,0 +1,4 @@
+interface:
+  display_name: "TikHub Search"
+  short_description: "Search Xiaohongshu, Douyin, and WeChat articles"
+  default_prompt: "Use $tikhub-search to search this topic on Xiaohongshu, Douyin, and WeChat Official Accounts."
