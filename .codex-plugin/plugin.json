@@ -1,0 +1,39 @@
+{
+  "name": "tikhub-search",
+  "version": "0.2.0",
+  "description": "Search Xiaohongshu, Douyin, and WeChat Official Accounts through TikHub.",
+  "author": {
+    "name": "Joseph"
+  },
+  "homepage": "https://github.com/ungatu/tikhub-search",
+  "repository": "https://github.com/ungatu/tikhub-search",
+  "license": "MIT",
+  "keywords": [
+    "tikhub",
+    "search",
+    "xiaohongshu",
+    "douyin",
+    "wechat",
+    "official-accounts"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "TikHub Search",
+    "shortDescription": "Search Chinese walled-garden platforms with TikHub.",
+    "longDescription": "A thin, read-only TikHub search layer for Xiaohongshu, Douyin, and WeChat Official Account articles. It discovers current MCP tools, applies platform-specific filters, and returns a consistent result list with source links. Selected results can optionally be expanded into public details or comments.",
+    "developerName": "Joseph",
+    "category": "Productivity",
+    "websiteURL": "https://github.com/ungatu/tikhub-search",
+    "privacyPolicyURL": "https://github.com/ungatu/tikhub-search/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/ungatu/tikhub-search/blob/main/TERMS.md",
+    "capabilities": [
+      "Search",
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Search this topic on Xiaohongshu, Douyin, and WeChat Official Accounts.",
+      "Find the latest public discussion of this technology across all three platforms.",
+      "Search for these user pain points, then expand only the most relevant results."
+    ]
+  }
+}
