@@ -14,7 +14,7 @@ TikHub Search 是一个给 Codex 使用的轻量 skill：通过 TikHub 搜索小
 - 抖音视频/图文等综合内容
 - 微信公众号文章
 
-“公众号”默认调用微信文章搜索，不会混成视频号搜索。TikHub 的同一个 WeChat MCP 也提供视频号能力，但只有用户明确说“视频号”时才使用。
+“公众号”默认调用微信文章垂类，不会混成视频号搜索。实测发现 TikHub 的文章垂类对部分关键词会返回空结果；skill 会再做一次有界的综合搜索，并仅保留 `mp.weixin.qq.com` 文章（或 TikHub 返回的等价公众号标志），不会把普通网页、新闻或视频号误报为公众号文章。
 
 ### 安装 skill
 
@@ -82,7 +82,7 @@ python3 skills/tikhub-search/scripts/tikhub_api.py \
 
 ### 发布
 
-当前 `0.2.0` 是可在 GitHub 分发、可作为 skills-only plugin 验证的重构版本。GitHub 与 OpenAI Plugins Directory 的后续步骤见 [PUBLISHING.md](PUBLISHING.md)。商店文案和测试用例位于 [submission](submission/)。
+当前 `0.2.1` 是可在 GitHub 分发、可作为 skills-only plugin 验证的版本。它修复了微信文章垂类返回空结果时的公众号文章回退过滤。GitHub 与 OpenAI Plugins Directory 的后续步骤见 [PUBLISHING.md](PUBLISHING.md)。商店文案和测试用例位于 [submission](submission/)。
 
 本项目不提供 TikHub 账号或额度，也不隶属于 TikHub。用户需遵守 TikHub、目标平台和适用法律的要求。
 
