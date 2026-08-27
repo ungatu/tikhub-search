@@ -34,12 +34,14 @@ Interpret “微信/公众号搜索” as Official Account articles. Do not subs
 2. Prefer these currently supported tools when present:
    - Xiaohongshu: `xiaohongshu_app_v2_search_notes`
    - Douyin: `douyin_search_fetch_general_search_v2`
-   - WeChat Official Accounts: `wechat_search_v2_fetch_search` with `business_type="article"`
+   - WeChat Official Accounts: `wechat_search_v2_fetch_search` with `business_type="article"` and `raw=false`
 3. A direct user request to search authorizes one first-page call per requested platform. Do not interrupt a normal three-platform search with a budget questionnaire.
 4. Before additional pages or bulk detail/comment calls, state the proposed number of extra calls. Proceed without another question only when the user already supplied a page, call, or spend limit that covers them.
 5. Preserve the user's query. Add at most one obvious synonym or error-string variant only after a zero-result search or when the user asks for query expansion.
 6. Follow returned cursors and session IDs exactly. Never synthesize pagination values.
 7. Validate both transport status and TikHub's response envelope. Report upstream errors as errors, even when the outer response says `code: 200`.
+
+For WeChat Official Account articles, treat the article vertical as the primary query, not as an infallible filter. If a successful `business_type="article"` response has `data.count=0`, state that one extra paid fallback call will be made, repeat the same query/sort/time with `business_type="all"`, and filter `data.items` locally. Keep an item only when its `doc_url` host is exactly `mp.weixin.qq.com`; if `doc_url` is absent, accept it only when both `mpScene=7` and `src_type=49`. Exclude items carrying `exportId`. Never label generic web pages, news results, or Channels videos as Official Account articles.
 
 Use relevance sorting unless the request is time-sensitive. For “最新/最近/刚发布”, prefer latest sorting plus the narrowest supported time filter. Do not compare engagement numbers across platforms as if they were equivalent.
 
