@@ -7,7 +7,7 @@
 3. After the repository exists, add its HTTPS `repository` and `homepage` URLs to `.codex-plugin/plugin.json`.
 4. Review the publisher name and public support contact.
 5. Run the tests, validators, and secret scan below.
-6. Commit, push, and create a `v0.2.0` release.
+6. Commit, push, and create a `v0.2.1` release.
 7. In a fresh Codex task, install `skills/tikhub-search` from the public GitHub URL with `$skill-installer`.
 8. Connect all three MCP servers and smoke-test one query on Xiaohongshu, Douyin, and WeChat Official Accounts.
 
