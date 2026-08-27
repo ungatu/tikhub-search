@@ -78,11 +78,31 @@ Supported vertical keys currently include `all`, `account`, `article`, `video`, 
 - Use `account` only when the user asks to find a 公众号账号.
 - Use `wechat_search_v2_fetch_search_videos` only for explicit 视频号 searches.
 
+The `article` vertical can return zero for a query even when the same universal search contains Official Account articles. After a successful zero-result article response, make at most one bounded fallback call with the same query, sort, and time filter but `business_type="all"`, then filter the flattened `data.items`:
+
+1. Keep items whose parsed `doc_url` host is exactly `mp.weixin.qq.com`.
+2. If `doc_url` is missing, keep only items where `mpScene == 7` and `src_type == 49`.
+3. Exclude items with `exportId`; those are Channels videos.
+4. Do not keep ordinary web/news results merely because they have `doc_url`.
+
+For `raw=false` article items, normalize these fields:
+
+- `title`: strip the returned `<em class="highlight">` tags;
+- `summary`: `desc`;
+- `author`: `source.title`;
+- `published_at`: numeric `timestamp` first, then `date` or `source.dateTime`;
+- `url`: `doc_url`;
+- `platform_id`: `docID`, preserved as a string.
+
+TikHub documents `docID` and similar identifiers as 64-bit values. Never pass them through a JavaScript `Number`.
+
 Current sort keys: `default`, `latest`, `hot`. Current publish-time keys: `all`, `day`, `week`, `half_year`.
 
 For later pages, pass the returned `cursor` exactly. Increasing `offset` alone does not paginate and can return the first page again.
 
 REST fallback: `POST /api/v1/wechat_search/v2/fetch_search`
+
+Official endpoint and schema: <https://api.tikhub.io/api/v1/wechat_search/v2/fetch_search> and <https://api.tikhub.io/#/WeChat-Search-V2-API>.
 
 Optional Official Account expansion:
 
