@@ -32,6 +32,15 @@ class PackageContractTests(unittest.TestCase):
         self.assertIn('"business_type": "article"', platform_text)
         self.assertIn("Do not substitute WeChat Channels", skill_text)
 
+    def test_wechat_zero_result_fallback_is_strict(self):
+        skill_text = SKILL.read_text(encoding="utf-8")
+        platform_text = PLATFORMS.read_text(encoding="utf-8")
+        for marker in ("mp.weixin.qq.com", "mpScene=7", "src_type=49", "exportId"):
+            self.assertIn(marker, skill_text)
+        self.assertIn('business_type="all"', skill_text)
+        self.assertIn("source.title", platform_text)
+        self.assertIn("docID", platform_text)
+
 
 if __name__ == "__main__":
     unittest.main()
