@@ -175,7 +175,7 @@ def request_once(
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Accept": "application/json",
-        "User-Agent": "tikhub-search-skill/0.2.0",
+        "User-Agent": "tikhub-search-skill/0.2.1",
     }
     if body_bytes is not None:
         headers["Content-Type"] = "application/json"
@@ -265,7 +265,7 @@ def main() -> int:
     }
     envelope = {
         "_meta": {
-            "client": "tikhub-search-skill/0.2.0",
+            "client": "tikhub-search-skill/0.2.1",
             "started_at": started.isoformat(),
             "finished_at": finished.isoformat(),
             "method": args.method,
